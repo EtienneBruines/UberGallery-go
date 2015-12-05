@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+  {{ $p := . }}
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hi!</title>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.min.css">
+</head>
+<body>
+  <header class="row column">
+    <h1>Image Gallery <small>({{ len ($p.Get "images") }})</small></h1>
+    <hr>
+  </header>
+
+  <div class="row small-up-2 medium-up-4 large-up-8 data-equalizer">
+    {{ range $img := ($p.Get "images") }}
+    <div class="column" data-equalizer-watch>
+      <a href="{{$img.URL}}" target="_blank"><img class="thumbnail" alt="" src="{{$img.Thumbnail}}" title="{{$img.Name}}"></a>
+    </div>
+    {{ end }}
+  </div>
+
+  {{ if eq 0 (len ($p.Get "images")) }}
+  <div class="row column">
+    <p>You currently have no images in your gallery. </p>
+  </div>
+  {{ end }}
+
+  <footer class="row column">
+    <hr>
+    <p>Powered by <a href="#" target="_blank">UberGallery-Go</a>, based on <a href="#">UberGallery</a>. </p>
+  </footer>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
+  <script>
+    // TODO: foundation equalizer
+    $(document).foundation();
+  </script>
+</body>
+</html>
